@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
+import UserCard from './UserCard';
 
 const pinterestArt = [
   {
@@ -38,6 +39,30 @@ const pinterestArt = [
 
 export default function App() {
   const [activeBoard, setActiveBoard] = useState('All');
+
+  // Task 1: Required Lab State Hooks
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Task 2: Required useEffect Fetch Call
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUsers(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
 
   const boards = ['All', 'Oil Paintings', 'Modern Gallery', 'Sculptures & Decor', 'Prints'];
 
@@ -103,7 +128,7 @@ export default function App() {
       </div>
 
       {/* Pinterest Masonry Multi-Column Grid */}
-      <div style={{ columnCount: 3, columnGap: '20px', maxWidth: '1000px', margin: '0 auto' }}>
+      <div style={{ columnCount: 3, columnGap: '20px', maxWidth: '1000px', margin: '0 auto 40px auto' }}>
         {filteredArt.map((art) => (
           <ProductCard
             key={art.id}
@@ -115,6 +140,23 @@ export default function App() {
           />
         ))}
       </div>
+
+      {/* Task 3: Render User Data Section */}
+      <div style={{ maxWidth: '1000px', margin: '40px auto', paddingTop: '20px', borderTop: '2px solid #eee' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>User Directory (Fetched Data)</h2>
+
+        {loading && <p style={{ textAlign: 'center' }}>Loading users...</p>}
+        {error && <p style={{ textAlign: 'center', color: 'red' }}>Error: {error}</p>}
+
+        {!loading && !error && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
+            {users.map((user) => (
+              <UserCard key={user.id} user={user} />
+            ))}
+          </div>
+        )}
+      </div>
+
     </div>
   );
 }
