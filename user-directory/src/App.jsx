@@ -31,14 +31,12 @@ function App() {
         <p>Fetched dynamically via JSONPlaceholder API using React and useEffect</p>
       </header>
 
-      {/* 1. Loading State */}
       {isLoading && (
         <div style={{ textAlign: 'center', padding: '40px' }}>
           <h2>Loading user data, please wait...</h2>
         </div>
       )}
 
-      {/* 2. Error State */}
       {error && (
         <div style={{ color: '#e53e3e', backgroundColor: '#fff5f5', padding: '16px', borderRadius: '6px' }}>
           <h3>An error occurred:</h3>
@@ -46,7 +44,6 @@ function App() {
         </div>
       )}
 
-      {/* 3. Data Loaded: Render Grid */}
       {!isLoading && !error && (
         <div style={{
           display: 'grid',
