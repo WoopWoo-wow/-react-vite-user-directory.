@@ -1,0 +1,1 @@
+print("Six seven eight nine ten")

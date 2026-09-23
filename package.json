@@ -1,0 +1,24 @@
+{
+  "name": "woopwoo-wow",
+  "version": "1.0.0",
+  "description": "A collection of my beginner Python exercises, practice scripts, and logic tests.\r AND brt brt brt haha",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WoopWoo-wow/WoopWoo-wow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/WoopWoo-wow/WoopWoo-wow/issues"
+  },
+  "homepage": "https://github.com/WoopWoo-wow/WoopWoo-wow#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
